@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javapandeng.mapper.ManageBooksMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultMapManageBooks" type="com.javapandeng.po.ManageBooks">
+        <result property="bkID" column="bkID" jdbcType="INTEGER"/>
+        <result property="bkCode" column="bkCode" jdbcType="VARCHAR"/>
+        <result property="bkName" column="bkName" jdbcType="VARCHAR"/>
+        <result property="bkAuthor" column="bkAuthor" jdbcType="VARCHAR"/>
+        <result property="bkPress" column="bkPress" jdbcType="VARCHAR"/>
+        <result property="bkDatePress" column="bkDatePress" jdbcType="TIMESTAMP"/>
+        <result property="bkCatalog" column="bkCatalog" jdbcType="VARCHAR"/>
+        <result property="bkPrice" column="bkPrice" jdbcType="DECIMAL"/>
+        <result property="bkDateInput" column="bkDateInput" jdbcType="DECIMAL"/>
+        <result property="bkBrief" column="bkBrief" jdbcType="VARCHAR"/>
+        <result property="bkStatus" column="bkStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 声明数据库字段 -->
+    <sql id="ManageBooks_field">
+        bkID,bkCode,bkName,bkAuthor,bkPress,bkDatePress,bkCatalog,bkPrice,bkBrief,bkStatus
+    </sql>
+
+    <!-- 实体类属性-->
+    <sql id="ManageBooks_insert">
+        #{bkID},#{bkCode},#{bkName},#{bkAuthor},#{bkPress},#{bkDatePress},#{bkCatalog},#{bkPrice},#{bkBrief},#{bkStatus}
+    </sql>
+
+    <!-- 更新结果  -->
+    <sql id="ManageBooks_update">
+        <if test="bkCode != null">
+            bkCode = #{bkCode},
+        </if>
+        <if test="bkName != null">
+            bkName = #{bkName},
+        </if>
+        <if test="bkAuthor != null">
+            bkAuthor = #{bkAuthor},
+        </if>
+        <if test="bkPress != null">
+            bkPress = #{bkPress},
+        </if>
+        <if test="bkDatePress != null">
+            bkDatePress = #{bkDatePress},
+        </if>
+        <if test="bkCatalog != null">
+            bkCatalog = #{bkCatalog},
+        </if>
+        <if test="bkPrice != null">
+            bkPrice = #{bkPrice},
+        </if>
+        <if test="bkDateInput != null">
+            bkDateInput = #{bkDateInput},
+        </if>
+        <if test="bkBrief != null">
+            bkBrief = #{bkBrief},
+        </if>
+        <if test="bkStatus != null">
+            bkStatus = #{bkStatus}
+        </if>
+    </sql>
+
+    <!-- 查询时条件   -->
+    <sql id="ManageBooks_where">
+        <if test="bkID != null">
+            and bkID = #{bkID},
+        </if>
+        <if test="bkCode != null">
+            bkCode = #{bkCode},
+        </if>
+        <if test="bkName != null">
+            bkName = #{bkName},
+        </if>
+        <if test="bkAuthor != null">
+            bkAuthor = #{bkAuthor},
+        </if>
+        <if test="bkPress != null">
+            bkPress = #{bkPress},
+        </if>
+        <if test="bkDatePress != null">
+            bkDatePress = #{bkDatePress},
+        </if>
+        <if test="bkCatalog != null">
+            bkCatalog = #{bkCatalog},
+        </if>
+        <if test="bkPrice != null">
+            bkPrice = #{bkPrice},
+        </if>
+        <if test="bkDateInput != null">
+            bkDateInput = #{bkDateInput},
+        </if>
+        <if test="bkBrief != null">
+            bkBrief = #{bkBrief},
+        </if>
+        <if test="bkStatus != null">
+            bkStatus = #{bkStatus}
+        </if>
+    </sql>
+
+    <!--    新增        -->
+    <!--    参数：实体类-->
+    <!--    返回：主键 -->
+    <insert id="insert" parameterType="com.javapandeng.po.ManageBooks" useGeneratedKeys="true" keyProperty="bkID">
+        insert into tb_book(
+        <include refid="ManageBooks_field"/>
+        ) values(
+        <include refid="ManageBooks_insert"/>
+        )
+    </insert>
+
+    <!-- 根据实体主键删除一个实体-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from tb_book where bkID=#{bkID}
+    </delete>
+
+    <!-- 通过实体删除-->
+    <delete id="deleteByEntity" parameterType="com.javapandeng.po.ManageBooks">
+        delete from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </delete>
+
+    <!-- 通过map删除 -->
+    <delete id="deleteByMap" parameterType="java.util.HashMap">
+        delete from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </delete>
+
+    <!-- 更新一个实体 -->
+    <update id="update" parameterType="com.javapandeng.po.ManageBooks">
+        update tb_book
+        <set>
+            <include refid="ManageBooks_update"/>
+        </set>
+        where 1=1
+        <include refid="ManageBooks_where"/>
+    </update>
+
+    <!-- 通过id进行修改-->
+    <update id="updateById" parameterType="com.javapandeng.po.ManageBooks">
+        update tb_book
+        <set>
+            <include refid="ManageBooks_update"/>
+        </set>
+        where bkID=#{bkID}
+    </update>
+
+    <!-- 根据参数查询-->
+    <select id="listByMap" resultMap="ResultMapManageBooks" parameterType="map">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!-- 查询整个表 -->
+    <select id="listAll" resultMap="ResultMapManageBooks">
+        select <include refid="ManageBooks_field"/>
+        from tb_book
+    </select>
+
+    <!-- 查询所有实体,根据实体属性值为判断条件查询所有实体-->
+    <select id="listAllByEntity" resultMap="ResultMapManageBooks" parameterType="com.javapandeng.po.ManageBooks">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!-- 根据主键获取一个实体-->
+    <select id="load" resultMap="ResultMapManageBooks" parameterType="java.lang.Integer">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where bkID=#{bkID}
+    </select>
+
+    <!-- 根据主键获取一个实体-->
+    <select id="getById" resultMap="ResultMapManageBooks" parameterType="java.lang.Integer">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where bkID=#{bkID}
+    </select>
+
+    <!-- 通过map查询-->
+    <select id="getByMap" resultMap="ResultMapManageBooks" parameterType="map">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!--通过对象查询-不分页-->
+    <select id="getByEntity" resultMap="ResultMapManageBooks" parameterType="com.javapandeng.po.ManageBooks">
+        select <include refid="ManageBooks_field"/>
+        from tb_books where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!-- 通过map查询分页-->
+    <select id="findByMap" resultMap="ResultMapManageBooks" parameterType="map">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!--通过对象查询分页-->
+    <select id="findByEntity" resultMap="ResultMapManageBooks" parameterType="com.javapandeng.po.ManageBooks">
+        select <include refid="ManageBooks_field"/>
+        from tb_book where 1=1
+        <include refid="ManageBooks_where"/>
+    </select>
+
+    <!-- 批量新增-->
+    <select id="insertBatch" parameterType="java.util.List">
+        insert into tb_book(
+        <include refid="ManageBooks_field"/>
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{bkCode},#{bkName},#{bkAuthor},#{bkPress},#{bkDatePress},#{bkCatalog},#{bkPrice},#{bkDateInput},#{bkBrief},#{bkStatus})
+        </foreach>
+    </select>
+
+    <!-- 批量修改-->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update tb_book
+            <set>
+                <if test="bkCode != null">
+                    bkCode = #{bkCode},
+                </if>
+                <if test="bkName != null">
+                    bkName = #{bkName},
+                </if>
+                <if test="bkAuthor != null">
+                    bkAuthor = #{bkAuthor}
+                </if>
+                <if test="bkPress != null">
+                    bkPress = #{bkPress},
+                </if>
+                <if test="bkDatePress != null">
+                    bkDatePress = #{bkDatePress},
+                </if>
+                <if test="bkCatalog != null">
+                    bkCatalog = #{bkCatalog}
+                </if>
+
+                <if test="bkPrice != null">
+                    bkPrice = #{bkPrice},
+                </if>
+                <if test="bkDateInput != null">
+                    bkDateInput = #{bkDateInput}
+                </if>
+                <if test="bkBrief != null">
+                    bkBrief = #{bkBrief},
+                </if>
+                <if test="bkStatus != null">
+                    bkStatus = #{bkStatus}
+                </if>
+            </set>
+            where 1=1
+            <if test="item.bkID != null">
+                and bkID = #{item.bkID}
+            </if>
+        </foreach>
+    </update>
+
+    <!-- 封装纯sql语法-->
+    <!-- 查询一个对象返回map-->
+    <select id="getBySqlReturnMap" resultType="map">
+        ${sql}
+    </select>
+
+    <!-- 查询一个对象返回实体类-->
+    <select id="getBySqlReturnEntity" resultMap="ResultMapManageBooks">
+        ${sql}
+    </select>
+
+    <!-- 查询一个对象返回map列表-->
+    <select id="listBySqlReturnMap" resultType="map">
+        ${sql}
+    </select>
+
+    <!-- 查询列表返回实体-->
+    <select id="listBySqlReturnEntity" resultMap="ResultMapManageBooks">
+        ${sql}
+    </select>
+
+    <!-- 查询分页-->
+    <select id="findBySqlRerturnEntity" resultMap="ResultMapManageBooks">
+        ${sql}
+    </select>
+
+    <!-- 通过sql修改-->
+    <update id="updateBysql">
+        ${sql}
+    </update>
+
+    <!-- 通过sql删除-->
+    <delete id="deleteBySql">
+         ${sql}
+    </delete>
+</mapper>

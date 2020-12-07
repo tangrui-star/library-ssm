@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javapandeng.mapper.ReaderMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultMapReader" type="com.javapandeng.po.Reader">
+        <result property="rdID" column="rdID" jdbcType="INTEGER"/>
+        <result property="rdName" column="rdName" jdbcType="VARCHAR"/>
+        <result property="rdSex" column="rdSex" jdbcType="VARCHAR"/>
+        <result property="rdType" column="rdType" jdbcType="INTEGER"/>
+        <result property="rdDept" column="rdDept" jdbcType="VARCHAR"/>
+        <result property="rdPhone" column="rdPhone" jdbcType="VARCHAR"/>
+        <result property="rdEmail" column="rdEmail" jdbcType="VARCHAR"/>
+        <result property="rdBorrowQty" column="rdBorrowQty" jdbcType="INTEGER"/>
+        <result property="rdPwd" column="rdPwd" jdbcType="VARCHAR"/>
+
+
+    </resultMap>
+
+    <!-- 声明数据库字段 -->
+    <sql id="Reader_field">
+        rdID,rdName,rdSex,rdType,rdDept,rdPhone,rdEmail,rdBorrowQty,rdPwd
+    </sql>
+
+    <!-- 实体类属性-->
+    <sql id="Reader_insert">
+        #{rdID},#{rdName},#{rdSex},#{rdType},#{rdDept},#{rdPhone},#{rdEmail},#{rdBorrowQty},#{rdPwd}
+    </sql>
+
+
+    <select id="getByEntity1" resultMap="ResultMapReader" parameterType="com.javapandeng.po.Reader">
+        select
+        rdID,rdName
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+    <!--通过对象查询-不分页-->
+    <select id="getByEntity" resultMap="ResultMapReader" parameterType="com.javapandeng.po.Reader">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+    <!-- 更新结果  -->
+    <sql id="Reader_update">
+        <if test="rdID != null">
+            rdID = #{rdID},
+        </if>
+        <if test="rdName != null">
+            rdName = #{rdName},
+        </if>
+        <if test="rdSex != null">
+            rdSex = #{rdSex},
+        </if>
+        <if test="rdType != null">
+            rdType = #{rdType},
+        </if>
+        <if test="rdDept != null">
+            rdDept = #{rdDept},
+        </if>
+        <if test="rdPhone != null">
+            rdPhone = #{rdPhone},
+        </if>
+        <if test="rdEmail != null">
+            rdEmail = #{rdEmail},
+        </if>
+        <if test="rdBorrowQty != null">
+            rdBorrowQty = #{rdBorrowQty},
+        </if>
+        <if test="rdPwd != null">
+            rdPwd = #{rdPwd}
+        </if>
+    </sql>
+
+    <!-- 查询时条件   -->
+    <sql id="Reader_where">
+        <if test="rdID != null">
+            and rdID = #{rdID}
+        </if>
+        <if test="rdName != null">
+            and rdName = #{rdName}
+        </if>
+        <if test="rdSex != null">
+            and rdSex = #{rdSex}
+        </if>
+        <if test="rdType != null">
+            and rdType = #{rdType}
+        </if>
+        <if test="rdDept != null">
+            and rdDept = #{rdDept}
+        </if>
+        <if test="rdPhone != null">
+            and rdPhone = #{rdPhone}
+        </if>
+        <if test="rdEmail != null">
+            and rdEmail = #{rdEmail}
+        </if>
+        <if test="rdBorrowQty != null">
+            and rdBorrowQty = #{rdBorrowQty}
+        </if>
+        <if test="rdPwd != null">
+            and rdPwd = #{rdPwd}
+        </if>
+
+    </sql>
+
+    <!--    新增        -->
+    <!--    参数：实体类-->
+    <!--    返回：主键 -->
+    <insert id="insert" parameterType="com.javapandeng.po.Reader" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_reader(
+        <include refid="Reader_field"/>
+        ) values(
+        <include refid="Reader_insert"/>
+        )
+    </insert>
+
+    <!-- 根据实体主键删除一个实体-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from tb_reader where rdID=#{rdID}
+    </delete>
+
+    <!-- 通过实体删除-->
+    <delete id="deleteByEntity" parameterType="com.javapandeng.po.Reader">
+        delete from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </delete>
+
+    <!-- 通过map删除 -->
+    <delete id="deleteByMap" parameterType="java.util.HashMap">
+        delete from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </delete>
+
+    <!-- 更新一个实体 -->
+    <update id="update" parameterType="com.javapandeng.po.Reader">
+        update tb_reader
+        <set>
+            <include refid="Reader_update"/>
+        </set>
+        where 1=1
+        <include refid="Reader_where"/>
+    </update>
+
+    <!-- 通过id进行修改-->
+    <update id="updateById" parameterType="com.javapandeng.po.Reader">
+        update tb_reader
+        <set>
+            <include refid="Reader_update"/>
+        </set>
+        where rdID=#{rdID}
+    </update>
+
+    <!-- 根据参数查询-->
+    <select id="listByMap" resultMap="ResultMapReader" parameterType="map">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+    <!-- 查询整个表 -->
+    <select id="listAll" resultMap="ResultMapReader">
+        select <include refid="Reader_field"/>
+        from tb_reader
+    </select>
+
+    <!-- 查询所有实体,根据实体属性值为判断条件查询所有实体-->
+    <select id="listAllByEntity" resultMap="ResultMapReader" parameterType="com.javapandeng.po.Reader">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+    <!-- 根据主键获取一个实体-->
+    <select id="load" resultMap="ResultMapReader" parameterType="java.lang.Integer">
+        select <include refid="Reader_field"/>
+        from tb_reader where rdID=#{rdID}
+    </select>
+
+    <!-- 根据主键获取一个实体-->
+    <select id="getById" resultMap="ResultMapReader" parameterType="java.lang.Integer">
+        select <include refid="Reader_field"/>
+        from tb_reader where id=#{id}
+    </select>
+
+    <!-- 通过map查询-->
+    <select id="getByMap" resultMap="ResultMapReader" parameterType="map">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+
+
+    <!-- 通过map查询分页-->
+    <select id="findByMap" resultMap="ResultMapReader" parameterType="map">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+    <!--通过对象查询分页-->
+    <select id="findByEntity" resultMap="ResultMapReader" parameterType="com.javapandeng.po.Reader">
+        select <include refid="Reader_field"/>
+        from tb_reader where 1=1
+        <include refid="Reader_where"/>
+    </select>
+
+    <!-- 批量新增-->
+    <select id="insertBatch" parameterType="java.util.List">
+        insert into tb_reader(
+        <include refid="Reader_field"/>
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userName},#{item.passWord},#{item.realName})
+        </foreach>
+    </select>
+
+    <!-- 批量修改-->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update tb_reader
+            <set>
+                <if test="item.userName != null">
+                    userName = #{item.userName},
+                </if>
+                <if test="item.passWord != null">
+                    passWord = #{item.passWord},
+                </if>
+                <if test="item.realName != null">
+                    realName = #{item.realName}
+                </if>
+            </set>
+            where 1=1
+            <if test="item.id != null">
+                and id = #{item.id}
+            </if>
+        </foreach>
+    </update>
+
+    <!-- 封装纯sql语法-->
+    <!-- 查询一个对象返回map-->
+    <select id="getBySqlReturnMap" resultType="map">
+        ${sql}
+    </select>
+
+    <!-- 查询一个对象返回实体类-->
+    <select id="getBySqlReturnEntity" resultMap="ResultMapReader">
+        ${sql}
+    </select>
+
+    <!-- 查询一个对象返回map列表-->
+    <select id="listBySqlReturnMap" resultType="map">
+        ${sql}
+    </select>
+
+    <!-- 查询列表返回实体-->
+    <select id="listBySqlReturnEntity" resultMap="ResultMapReader">
+        ${sql}
+    </select>
+
+    <!-- 查询分页-->
+    <select id="findBySqlRerturnEntity" resultMap="ResultMapReader">
+        ${sql}
+    </select>
+
+    <!-- 通过sql修改-->
+    <update id="updateBysql">
+        ${sql}
+    </update>
+
+    <!-- 通过sql删除-->
+    <delete id="deleteBySql">
+         ${sql}
+    </delete>
+</mapper>

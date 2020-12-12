@@ -162,8 +162,16 @@ public String utoLogin(Model model,Reader reader,HttpServletRequest request){
     借书
     * */
     @RequestMapping(value = "/borrow")
-    public String borrow(ManageBorrow manageBorrow,HttpServletRequest request){
-        manageBorrowService.insert1(manageBorrow);
+    public String borrow(ManageBorrow manageBorrow){
+
+        String sql = "insert into tb_borrow (rdID,bkID,ldDateOut,ldDateRetPlan,lsHasReturn)";
+        sql += "values ('"+ manageBorrow.getRdID() +"',' "+ manageBorrow.getBkID() +" ',now(),date_add(now(),interval 2 month),0)";
+
+        manageBorrowService.borrowInsert(sql);
+
+        String sql1 = "update tb_reader set rdBorrowQty = rdBorrowQty +1 where rdID = '"+ manageBorrow.getRdID() +"' ";
+
+        manageBorrowService.borrowInsert(sql1);
 
         return "redirect:/login/findBySql";
     }
@@ -215,12 +223,19 @@ public String utoLogin(Model model,Reader reader,HttpServletRequest request){
     * 还书
     * */
     @RequestMapping("/returnBook")
-    public String returnBook(Integer borrowID,Integer rdID){
+    public String returnBook(ManageBorrow manageBorrow){
 
-    /*    String sql ="select rdID from tb_borrow where borrowID = '" +borrowID + "'";
-        manageBorrowService.listBySqlReturnEntity(sql);
-        System.out.println();*/
-        manageBorrowService.deleteById(borrowID);
+        String sql = "update tb_borrow set lsHasReturn=1, ldDateRetAct=now() where borrowID = '" + manageBorrow.getBorrowID() + "'  ";
+
+
+
+        String sql1 = "update tb_reader set rdBorrowQty = rdBorrowQty -1 where rdID = ' "+ manageBorrow.getRdID() +"' ";
+
+
+        manageBorrowService.updateBysql(sql);
+
+        manageBorrowService.updateBysql(sql1);
+
         return "redirect:/login/userFindBySql";
     }
 

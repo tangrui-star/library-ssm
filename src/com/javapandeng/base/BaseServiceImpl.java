@@ -32,8 +32,8 @@ public abstract  class BaseServiceImpl<T> implements BaseService<T>{
 	public void deleteById(Serializable id) {
 		this.getBaseDao().deleteById(id);
 	}
-	
-	
+
+
 	/**
 	 * 通过实体删除
 	 */
@@ -64,8 +64,10 @@ public abstract  class BaseServiceImpl<T> implements BaseService<T>{
 	public void updateById(T entity) {
          this.getBaseDao().updateById(entity);		
 	}
-	
-	 /**
+
+
+
+	/**
      * 根据参数查询
      * @param clz
      * @param params
@@ -289,6 +291,13 @@ public abstract  class BaseServiceImpl<T> implements BaseService<T>{
 	public void deleteBySql(String sql) {
 		this.getBaseDao().deleteBySql(sql);
 	}
+
+
+	public void borrowInsert(String sql) {
+		this.getBaseDao().borrowInsert(sql);
+	}
+
+
 
 	//判断空
 	public boolean isEmpty(String str) {

@@ -111,13 +111,24 @@
                 <td>${data1.ldOverDay}</td>
                 <td>${data1.ldOverMoney}</td>
                 <td>${data1.ldPunishMoney}</td>
-                <td>${data1.ldOverDay}</td>
+                <td>${data1.lsHasReturn}</td>
 
+                <c:if test="${data1.lsHasReturn==0}">
                 <td>
                     <div class="button-group">
-                        <a class="button border-main" href="${ctx}/login/returnBook?borrowID=${data1.borrowID}"><span class="icon-edit">还书</span></a>
+
+                        <form action="${ctx}/login/returnBook" method="post">
+                            <input type="hidden" name="borrowID" value="${data1.borrowID}"/>
+                            <input type="hidden" name="rdID" value="${data1.rdID}">
+                            <input  type="submit" class="button border-main" value="还书" />
+                        </form>
+
+
+
                     </div>
+
                 </td>
+                </c:if>
             </tr>
         </c:forEach>
         <tr>

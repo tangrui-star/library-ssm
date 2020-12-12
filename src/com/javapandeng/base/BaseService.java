@@ -22,8 +22,11 @@ public interface BaseService<T> {
      * 根据实体主键删除一个实体  
      * @param primaryKey  
      */  
-    void deleteById(Serializable id);  
-    
+    void deleteById(Serializable id);
+
+
+
+
     /**  
      * 更新一个实体  
      * @param entity  
@@ -35,7 +38,7 @@ public interface BaseService<T> {
      * @param id
      */
     void updateById(T entity);
-    
+
     /**
      * 通过实体删除
      * @param entity
@@ -97,7 +100,6 @@ public interface BaseService<T> {
      */
     T getByEntity(T entity);
 
-    T getByEntity1(T entity);
     //=======================一下是分页方法================================
     /**
      * 默认 sqlId find是分页
@@ -174,5 +176,9 @@ public interface BaseService<T> {
      * @param sql
      */
     public void deleteBySql(@Param("sql")String sql);
-    
+
+
+    public void borrowInsert(@Param("sql")String sql);
+
+
 }

@@ -72,17 +72,20 @@
         <if test="ldDateRetPlan != null">
             ldDateRetPlan = #{ldDateRetPlan},
         </if>
-        <if test="bkPrice != null">
-            bkPrice = #{bkPrice},
+        <if test="ldDateRetAct != null">
+            ldDateRetAct = #{ldDateRetAct},
         </if>
-        <if test="bkDateInput != null">
-            bkDateInput = #{bkDateInput},
+        <if test="ldOverDay != null">
+            ldOverDay = #{ldOverDay},
         </if>
-        <if test="bkBrief != null">
-            bkBrief = #{bkBrief},
+        <if test="ldOverMoney != null">
+            ldOverMoney = #{ldOverMoney},
         </if>
-        <if test="bkStatus != null">
-            bkStatus = #{bkStatus}
+        <if test="ldPunishMoney != null">
+            ldPunishMoney = #{ldPunishMoney}
+        </if>
+        <if test="lsHasReturn != null">
+            lsHasReturn = #{lsHasReturn}
         </if>
     </sql>
 
@@ -312,4 +315,10 @@
     <delete id="deleteBySql">
          ${sql}
     </delete>
+
+    <insert id="borrowInsert">
+         ${sql}
+    </insert>
+
+
 </mapper>

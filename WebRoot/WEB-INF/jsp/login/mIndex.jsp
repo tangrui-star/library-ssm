@@ -40,7 +40,7 @@
     <ul style="display: block">
         <li><a href="${ctx}/manageBooks/findBySql" target="right"><span class="icon-caret-right"></span>图书管理</a> </li>
         <li><a href="${ctx}/reader/findBySql" target="right"><span class="icon-caret-right"></span>读者管理</a> </li>
-        <li><a href="${ctx}/manageBorrow/findBySql" target="right"><span class="icon-caret-right"></span>续借管理</a> </li>
+        <li><a href="${ctx}/manageBorrow/findBySql" target="right"><span class="icon-caret-right"></span>借阅管理</a> </li>
 
     </ul>
 </div>

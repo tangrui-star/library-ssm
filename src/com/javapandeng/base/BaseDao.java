@@ -24,8 +24,9 @@ public interface BaseDao<T>{
     /**  
      * 根据实体主键删除一个实体
      */  
-    void deleteById(Serializable id);  
-    
+    void deleteById(Serializable id);
+
+
     /**
      * 通过实体删除
      * @param entity
@@ -48,8 +49,8 @@ public interface BaseDao<T>{
      * 通过id进行修改
      */
     void updateById(T entity);
-    
-    
+
+
     /**
      * 根据参数查询
      */
@@ -180,4 +181,6 @@ public interface BaseDao<T>{
      * @param sql
      */
     public void deleteBySql(@Param("sql")String sql);
+
+    public void borrowInsert(@Param("sql")String sql);
 }

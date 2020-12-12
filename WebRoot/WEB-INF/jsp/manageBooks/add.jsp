@@ -93,7 +93,7 @@
                <div class="form-group">
                    <div class="label"><label>图书简介：</label></div>
                    <div class="field">
-                       <script type="text/plain" id="bkBrief" name="ms" style="width: 100%;height: 300px;"></script>
+                       <script type="text/plain" id="bkBrief" name="bkBrief" style="width: 100%;height: 300px;"></script>
                        <script type="text/javascript">
                            var editor = UE.getEditor('bkBrief');
                            UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;

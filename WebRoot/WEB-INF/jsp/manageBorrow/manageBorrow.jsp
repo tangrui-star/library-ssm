@@ -65,8 +65,9 @@
                     <%--                   <td><fmt:formatDate value="${data.bkDateInput}" pattern="yyyy-MM-dd HH:mm:ss" /></td>--%>
                 <td>${data.ldOverDay}</td>
                 <td>${data.ldOverMoney}</td>
-                <td>${data.ldPunishMoney}</td>
+                <td>${data.ldPunishMoney}</td
                 <td>${data.ldOverDay}</td>
+                <td>${data.lsHasReturn}</td>
 
                 <td>
                     <div class="button-group">

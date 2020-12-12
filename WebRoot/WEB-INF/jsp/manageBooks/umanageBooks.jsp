@@ -76,6 +76,9 @@
                            <form action="${ctx}/login/borrow" method="post">
                                        <input type="hidden" name="bkID" value="${data.bkID}"/>
                                        <input type="hidden" name="rdID" value="${rdID}">
+<%--
+                                       <input type="hidden" name="lsHasReturn" value="0">
+--%>
                                        <input  type="submit" class="button border-main" value="借书" />
                            </form>
 

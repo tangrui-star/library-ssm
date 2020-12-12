@@ -28,7 +28,7 @@
         <strong><span class="icon-pencil-square-o">修改图书</span> </strong>
     </div>
     <div class="body-content">
-        <form action="${ctx}/reader/exAdd" method="post" class="form-x">
+        <form action="${ctx}/reader/exUpdate" method="post" class="form-x">
             <input type="hidden" name="rdID" value="${obj.rdID}">
             <div class="form-group">
                 <div class="label"><label>读者名：</label></div>

@@ -41,12 +41,7 @@
     <ul style="display: block">
         <li><a href="${ctx}/login/findBySql" target="right"><span class="icon-caret-right"></span>图书</a> </li>
         <li><a href="${ctx}/login/userFindBySql?rdID=${rdID}" target="right"><span class="icon-caret-right"></span>个人信息</a>
-<%--
-        <form action="${ctx}/login/userFindBySql" method="post">
-            <input type="hidden" name="bkID" value="${data.bkID}"/>
-            <input type="hidden" name="rdID" value="${rdID}">
-            <input target="right" type="submit" class="icon-caret-right" value="个人信息" />
-        </form>--%>
+
         </li>
 
 
